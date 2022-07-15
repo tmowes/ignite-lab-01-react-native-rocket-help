@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "ignite-lab-01-react-native-rocket-help",
+    "slug": "ignite-lab-01-react-native-rocket-help",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
