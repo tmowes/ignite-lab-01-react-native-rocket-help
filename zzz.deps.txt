@@ -1,0 +1,15 @@
+yad @babel/core @babel/preset-env @react-native-community/eslint-config @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint eslint-config-airbnb eslint-config-prettier eslint-import-resolver-typescript eslint-plugin-import eslint-plugin-import-helpers eslint-plugin-jsx-a11y eslint-plugin-prettier eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-sonarjs prettier react-native-svg-transformer typescript
+
+ya intl axios phosphor-react-native
+
+expo install expo-font @expo-google-fonts/roboto expo-app-loading react-native-svg react-native-reanimated react-native-iphone-x-helper react-native-gesture-handler
+
+expo install @react-navigation/native react-native-screens react-native-safe-area-context @react-navigation/native-stack
+
+
+<CircleWavyCheck size={24}  />
+<DesktopTower size={24}  />
+<ClockAfternoon size={24} />
+<CaretLeft size={24} />
+<Hourglass size={24} />
+<ClipboardText size={24} />
