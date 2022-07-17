@@ -29,7 +29,7 @@ export default function PrivateRoutes() {
     return (
       <IconButton
         onPress={() => setUser(null)}
-        icon={<SignOut size={24} color={colors.gray['500']} weight="bold" />}
+        icon={<SignOut size={26} color={colors.gray['500']} />}
       />
     )
   }
