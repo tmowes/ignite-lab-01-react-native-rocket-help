@@ -1,4 +1,5 @@
 /* eslint-disable sonarjs/no-duplicate-string */
+// DUMMY DATA
 export const requestData = [
   {
     id: 'patrimonio-1474561',
