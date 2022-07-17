@@ -13,3 +13,4 @@ expo install @react-navigation/native react-native-screens react-native-safe-are
 <CaretLeft size={24} />
 <Hourglass size={24} />
 <ClipboardText size={24} />
+<SignOut size={24} />

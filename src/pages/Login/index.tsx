@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 import {
   Box,
@@ -14,22 +14,24 @@ import {
 import { Envelope, Eye, EyeSlash, Key } from 'phosphor-react-native'
 
 import { Logo } from '../../components/Logo'
+import { useUser } from '../../contexts/UserProvider'
 
 export default function Login() {
+  const { setUser } = useUser()
+
   const { colors } = useTheme()
   const [show, setShow] = useState(false)
   return (
     <Flex px={8} flex={1} bg="gray_600" align="center">
       <Box my="20">
-        <Logo primary={colors.gray_300} secondary={colors.secondary_700} />
+        <Logo primary={colors.orange['500']} secondary={colors.blue['500']} />
       </Box>
       <Stack space={4} w="100%" alignItems="center" mb="auto">
-        <Heading mb="2" fontSize={18} lineHeight={32}>
+        <Heading mb="2" fontSize={18} lineHeight={32} fontFamily="body">
           Acesse sua conta
         </Heading>
         <Input
           placeholder="E-mail"
-          placeholderTextColor={colors.gray['500']}
           InputLeftElement={
             <Icon
               as={<Envelope size={24} color={colors.gray['500']} />}
@@ -37,10 +39,10 @@ export default function Login() {
               ml="2"
             />
           }
-          w="full"
         />
         <Input
           type={show ? 'text' : 'password'}
+          placeholder="Senha"
           InputLeftElement={
             <Icon as={<Key size={24} color={colors.gray['500']} />} size={5} ml="2" />
           }
@@ -64,15 +66,11 @@ export default function Login() {
               onPress={() => setShow(!show)}
             />
           }
-          placeholder="Senha"
-          placeholderTextColor={colors.gray['500']}
-          w="full"
         />
         <Button
+          onPress={() => setUser('julius')}
           mt="2"
-          onPress={() => console.log('hello world')}
-          w="full"
-          isLoading
+          // isLoading
           isLoadingText="Entrando..."
           _loading={{
             bg: 'secondary_700:alpha.70',

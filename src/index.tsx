@@ -6,13 +6,16 @@ import { NativeBaseProvider } from 'native-base'
 
 import AppRoutes from './routes/app.routes'
 import { theme } from './theme/theme'
+import { UserProvider } from './contexts/UserProvider'
 
 export default function App() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <NativeBaseProvider theme={theme}>
         <NavigationContainer>
-          <AppRoutes />
+          <UserProvider>
+            <AppRoutes />
+          </UserProvider>
           <StatusBar backgroundColor="transparent" translucent barStyle="light-content" />
         </NavigationContainer>
       </NativeBaseProvider>

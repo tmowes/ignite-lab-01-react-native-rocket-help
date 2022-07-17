@@ -16,8 +16,74 @@ export const theme = extendTheme({
     gray_100: '#E1E1E6', // (títulos)
   },
   fonts: {
-    heading: 'Roboto-Medium',
+    heading: 'Roboto-Bold',
     body: 'Roboto-Regular',
+  },
+  components: {
+    Button: {
+      baseStyle: {
+        rounded: 'md',
+        w: 'full',
+      },
+      defaultProps: {
+        colorScheme: 'orange',
+        w: 'full',
+      },
+    },
+    Input: {
+      baseStyle: {},
+      defaultProps: {
+        placeholderTextColor: 'gray.400',
+        bg: 'gray.900',
+        borderColor: 'gray.900',
+        color: 'red',
+        w: 'full',
+        _focus: {
+          borderColor: 'orange.500',
+          bg: 'gray.900',
+        },
+        _invalid: {
+          borderColor: 'red.500',
+          bg: 'gray.900',
+        },
+      },
+    },
+    TextArea: {
+      baseStyle: {},
+      defaultProps: {
+        placeholderTextColor: 'gray.400',
+        bg: 'gray.900',
+        borderColor: 'gray.900',
+        w: 'full',
+        _focus: {
+          borderColor: 'orange.500',
+          bg: 'gray.900',
+        },
+        _invalid: {
+          borderColor: 'red.500',
+          bg: 'gray.900',
+        },
+      },
+    },
+    IconButton: {
+      defaultProps: {
+        colorScheme: 'gray',
+        bg: 'transparent',
+        borderRadius: 'full',
+      },
+    },
+    Heading: {
+      defaultProps: {
+        fontWeight: 'bold',
+        fontFamily: 'heading',
+      },
+    },
+    Text: {
+      defaultProps: {
+        fontWeight: 'normal',
+        fontFamily: 'body',
+      },
+    },
   },
   config: {
     initialColorMode: 'dark',
