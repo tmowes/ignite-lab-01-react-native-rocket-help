@@ -36,6 +36,7 @@ export const theme = extendTheme({
         placeholderTextColor: 'gray.400',
         bg: 'gray.900',
         borderColor: 'gray.900',
+
         color: 'red',
         w: 'full',
         _focus: {

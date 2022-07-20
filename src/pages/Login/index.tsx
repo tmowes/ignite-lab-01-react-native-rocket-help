@@ -1,5 +1,7 @@
 import { useState } from 'react'
+import { Alert } from 'react-native'
 
+import auth from '@react-native-firebase/auth'
 import {
   Box,
   Button,
@@ -20,7 +22,20 @@ export default function Login() {
   const { setUser } = useUser()
 
   const { colors } = useTheme()
+  const [isLoading, setIsLoading] = useState(false)
   const [show, setShow] = useState(false)
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const handleSignin = async () => {
+    if (!email.trim() || !password.trim()) {
+      Alert.alert('Erro', 'Preencha todos os campos')
+      return
+    }
+    setIsLoading(true)
+    auth().signInWithEmailAndPassword(email, password)
+  }
+
   return (
     <Flex px={8} flex={1} bg="gray_600" align="center">
       <Box my="20">
@@ -32,6 +47,9 @@ export default function Login() {
         </Heading>
         <Input
           placeholder="E-mail"
+          value={email}
+          onChangeText={setEmail}
+          color="gray.300"
           InputLeftElement={
             <Icon
               as={<Envelope size={24} color={colors.gray['500']} />}
@@ -41,8 +59,11 @@ export default function Login() {
           }
         />
         <Input
-          type={show ? 'text' : 'password'}
+          secureTextEntry={!show}
+          value={password}
+          onChangeText={setPassword}
           placeholder="Senha"
+          color="gray.300"
           InputLeftElement={
             <Icon as={<Key size={24} color={colors.gray['500']} />} size={5} ml="2" />
           }
@@ -68,9 +89,9 @@ export default function Login() {
           }
         />
         <Button
-          onPress={() => setUser('julius')}
+          onPress={handleSignin}
           mt="2"
-          // isLoading
+          isLoading={isLoading}
           isLoadingText="Entrando..."
           _loading={{
             bg: 'secondary_700:alpha.70',

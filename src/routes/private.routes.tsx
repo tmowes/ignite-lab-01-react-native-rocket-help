@@ -2,18 +2,17 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { IconButton, useTheme } from 'native-base'
 import { CaretLeft, SignOut } from 'phosphor-react-native'
 import { useNavigation } from '@react-navigation/native'
+import auth from '@react-native-firebase/auth'
 
 import Home from '../pages/Home'
 import { NewRequest } from '../pages/NewRequest'
 import { RequestDetails } from '../pages/RequestDetails'
 import { LogoH } from '../components/LogoH'
-import { useUser } from '../contexts/UserProvider'
 
 const { Navigator, Screen } = createNativeStackNavigator()
 
 export default function PrivateRoutes() {
   const { colors } = useTheme()
-  const { setUser } = useUser()
   const { goBack } = useNavigation()
 
   function CustomGoBackButtom() {
@@ -28,7 +27,7 @@ export default function PrivateRoutes() {
   function CustomSignOutButton() {
     return (
       <IconButton
-        onPress={() => setUser(null)}
+        onPress={() => auth().signOut()}
         icon={<SignOut size={26} color={colors.gray['500']} />}
       />
     )
