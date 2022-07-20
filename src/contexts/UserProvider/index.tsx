@@ -1,11 +1,20 @@
-import { createContext, useContext, useMemo, useState } from 'react'
+import { createContext, useContext, useEffect, useMemo, useState } from 'react'
+
+import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth'
 
 import { UserContextData, UserProviderProps } from './types'
 
 const UserContext = createContext({} as UserContextData)
 
 export function UserProvider({ children }: UserProviderProps) {
-  const [user, setUser] = useState<string | null>(null)
+  const [user, setUser] = useState<FirebaseAuthTypes.User | null>(null)
+
+  useEffect(() => {
+    const subscriber = auth().onAuthStateChanged((userState) => {
+      setUser(userState)
+    })
+    return () => subscriber()
+  }, [])
 
   const providerValues = useMemo(
     () => ({

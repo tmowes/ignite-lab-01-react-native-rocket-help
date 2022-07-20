@@ -1,4 +1,4 @@
-package com.ignitelab01reactnativerockethelp.newarchitecture.modules;
+package com.tmowes.rockethelp.newarchitecture.modules;
 
 import com.facebook.jni.HybridData;
 import com.facebook.react.ReactPackage;

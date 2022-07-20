@@ -1,4 +1,4 @@
-rootProject.name = 'ignitelab01reactnativerockethelp'
+rootProject.name = 'ignite-lab-01-react-native-rocket-help'
 
 apply from: new File(["node", "--print", "require.resolve('expo/package.json')"].execute(null, rootDir).text.trim(), "../scripts/autolinking.gradle");
 useExpoModules()

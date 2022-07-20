@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "923456949724",
+    "project_id": "gorockethelp",
+    "storage_bucket": "gorockethelp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:923456949724:android:ffaea76313f40470b99319",
+        "android_client_info": {
+          "package_name": "com.tmowes.rockethelp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "923456949724-osrhqp5af0ap5jd7uv754b4l9sm81hqf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARydwY7T-Un7Mb15GSSVUyDxgN5v3SjGs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "923456949724-osrhqp5af0ap5jd7uv754b4l9sm81hqf.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "923456949724-trc0e7avge48vvs64ar9tidmnsmtf3du.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.tmowes.rockethelp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

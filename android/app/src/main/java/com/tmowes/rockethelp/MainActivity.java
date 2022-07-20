@@ -1,4 +1,4 @@
-package com.ignitelab01reactnativerockethelp;
+package com.tmowes.rockethelp;
 
 import android.os.Build;
 import android.os.Bundle;
