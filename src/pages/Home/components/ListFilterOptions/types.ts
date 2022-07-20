@@ -1,4 +1,6 @@
+import { Dispatch, SetStateAction } from 'react'
+
 export type ListFilterOptionsProps = {
-  filterPending: () => void
-  filterDone: () => void
+  selected: 'PENDING' | 'DONE'
+  setSelected: Dispatch<SetStateAction<'PENDING' | 'DONE'>>
 }

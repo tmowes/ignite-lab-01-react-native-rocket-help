@@ -1,20 +1,14 @@
-import { useState } from 'react'
-
 import { Button, Flex, Text } from 'native-base'
 
 import { ListFilterOptionsProps } from './types'
 
 export function ListFilterOptions(props: ListFilterOptionsProps) {
-  const { filterPending, filterDone } = props
-  const [selected, setSelected] = useState('DEFAULT')
+  const { selected, setSelected } = props
 
   return (
     <Flex direction="row" w="full" justify="space-between" p={4} py={2}>
       <Button
-        onPress={() => {
-          filterPending()
-          setSelected('PENDING')
-        }}
+        onPress={() => setSelected('PENDING')}
         variant="outline"
         h="8"
         w="48%"
@@ -34,10 +28,7 @@ export function ListFilterOptions(props: ListFilterOptionsProps) {
         </Text>
       </Button>
       <Button
-        onPress={() => {
-          filterDone()
-          setSelected('DONE')
-        }}
+        onPress={() => setSelected('DONE')}
         variant="outline"
         h="8"
         w="48%"

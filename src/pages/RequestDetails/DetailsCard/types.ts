@@ -4,6 +4,6 @@ export type DetailsCardProps = {
   icon: ReactNode
   title: string
   children: ReactNode
-  registerdAt?: Date
+  registerdAt?: Date | string
   flex?: number
 }

@@ -18,7 +18,7 @@ export function EmptyMessage(props: EmptyMessageProps) {
         />
       </Svg>
       <Text fontSize={20} textAlign="center" color="trueGray.600" lineHeight="lg">
-        Você ainda não tem solicitações criados
+        Você ainda não tem solicitações criadas
       </Text>
     </Stack>
   )

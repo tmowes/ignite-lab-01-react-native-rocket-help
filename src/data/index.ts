@@ -112,7 +112,7 @@ export type RequestData = {
   equipament: string
   problemDescription: string
   solution: string | null
-  completedAt: Date | null
-  createdAt: Date
+  completedAt: Date | string | null
+  createdAt: Date | string
   status: 'done' | 'pending'
 }

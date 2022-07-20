@@ -1,6 +1,6 @@
 export type RequestCardProps = {
   id: string
   equipament: string
-  createdAt: Date
+  createdAt: string
   status: 'done' | 'pending'
 }

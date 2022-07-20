@@ -1,7 +1,4 @@
-import React from 'react'
-
 import { Divider, Flex, Row, Text } from 'native-base'
-import { format } from 'date-fns'
 
 import { DetailsCardProps } from './types'
 
@@ -34,7 +31,7 @@ export function DetailsCard(props: DetailsCardProps) {
         <>
           <Divider my="2" bg="gray.700" />
           <Text ml="1" fontSize={12} color="gray.400">
-            Registrado em {format(new Date(registerdAt), "dd'/'MM'/'yyyy' às 'hh':'mm")}
+            Registrado em {registerdAt}
           </Text>
         </>
       )}

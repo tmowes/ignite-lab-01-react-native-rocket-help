@@ -9,7 +9,7 @@ import {
   useTheme,
 } from 'native-base'
 import { CircleWavyCheck, ClockAfternoon, Hourglass } from 'phosphor-react-native'
-import { format } from 'date-fns'
+// import { format } from 'date-fns'
 import { useNavigation } from '@react-navigation/native'
 
 import { RequestCardProps } from './types'
@@ -40,7 +40,8 @@ export function RequestCard(props: RequestCardProps) {
           <Row alignItems="center">
             <ClockAfternoon size={18} color={colors.gray['400']} />
             <Text ml="1" fontSize={12} lineHeight={19} color={colors.gray['400']}>
-              {format(new Date(createdAt), "dd/MM/yyyy' às 'hh'h'")}
+              {/* {format(new Date(createdAt), "dd/MM/yyyy' às 'hh'h'")} */}
+              {createdAt}
             </Text>
           </Row>
         </Column>

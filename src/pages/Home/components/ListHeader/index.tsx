@@ -1,9 +1,9 @@
 import { Flex, Heading, Text } from 'native-base'
 
-import { requestData } from '../../../../data'
+import { ListHeaderProps } from './types'
 
-export function ListHeader() {
-  const requestsTotal = requestData.length
+export function ListHeader(props: ListHeaderProps) {
+  const { requestsTotal = 0 } = props
   return (
     <Flex direction="row" w="full" justify="space-between" p={4} pb={1}>
       <Heading fontSize={20} lineHeight={32}>

@@ -1,4 +1,6 @@
-import React, { useCallback, useEffect, useState } from 'react'
+/* eslint-disable sonarjs/no-duplicate-string */
+import { useCallback, useEffect, useState } from 'react'
+import { Alert } from 'react-native'
 
 import {
   Box,
@@ -15,18 +17,25 @@ import {
   ClipboardText,
   DesktopTower,
   Hourglass,
-  TextAa,
 } from 'phosphor-react-native'
-import { useRoute } from '@react-navigation/native'
+import { useNavigation, useRoute } from '@react-navigation/native'
+import firestore from '@react-native-firebase/firestore'
 
 import { DetailsCard } from './DetailsCard'
 import { RequestData, requestData } from '../../data'
+import { Loading } from '../../components/Loading'
+import { dateFormat } from '../../utils/firestoreDateFormat'
+import { OrderDTO } from '../../DTOs/OrderDto'
 
 export function RequestDetails() {
   const { colors } = useTheme()
   const { params } = useRoute()
+  const { goBack } = useNavigation()
   const { id } = params as { id: string }
-  const [details, setDetails] = useState<RequestData | null>(null)
+
+  const [closingSolution, setClosingSolution] = useState('')
+  const [isLoading, setIsLoading] = useState(true)
+  const [details, setDetails] = useState<RequestData>({} as RequestData)
 
   const loadRequest = useCallback(async () => {
     setDetails(requestData.find(({ id: requestId }) => requestId === id))
@@ -34,9 +43,66 @@ export function RequestDetails() {
 
   const isDone = details?.status === 'done'
 
+  const handleSubmit = async () => {
+    if (!closingSolution.trim()) {
+      Alert.alert('Solicitação', 'Informa a solução para encerrar a solicitação')
+      return
+    }
+    setIsLoading(true)
+    firestore()
+      .collection<OrderDTO>('orders')
+      .doc(id)
+      .update({
+        status: 'done',
+        solution: closingSolution,
+        completedAt: firestore.FieldValue.serverTimestamp(),
+      })
+      .then(() => {
+        Alert.alert('Solicitação', 'Solicitação encerrada.')
+        goBack()
+      })
+      .catch((error) => {
+        console.log(error)
+        Alert.alert('Solicitação', 'Não foi possível encerrar a solicitação')
+      })
+  }
+
   useEffect(() => {
     loadRequest()
   }, [loadRequest])
+
+  useEffect(() => {
+    firestore()
+      .collection<OrderDTO>('orders')
+      .doc(id)
+      .get()
+      .then((doc) => {
+        const {
+          equipament,
+          problemDescription,
+          status,
+          createdAt,
+          completedAt,
+          solution,
+        } = doc.data()
+
+        setDetails({
+          id: doc.id,
+          equipament,
+          problemDescription,
+          status,
+          solution,
+          createdAt: dateFormat(createdAt),
+          completedAt: completedAt ? dateFormat(completedAt) : null,
+        })
+
+        setIsLoading(false)
+      })
+  }, [id])
+
+  if (isLoading) {
+    return <Loading />
+  }
 
   return (
     <Flex flex={1} bg="gray.900" align="center" position="relative">
@@ -68,7 +134,7 @@ export function RequestDetails() {
           <DetailsCard
             icon={<ClipboardText size={20} color={colors.blue['400']} />}
             title="descrição do problema"
-            registerdAt={new Date()}
+            registerdAt={details?.createdAt}
           >
             <Text color="gray.100" fontSize={16} lineHeight={26}>
               {details?.problemDescription}
@@ -78,7 +144,7 @@ export function RequestDetails() {
           <DetailsCard
             icon={<CircleWavyCheck size={20} color={colors.blue['400']} />}
             title="Solução"
-            registerdAt={isDone ? new Date(details?.completedAt) : undefined}
+            registerdAt={isDone ? details?.completedAt : undefined}
             flex={!isDone ? 1 : 0}
           >
             {isDone ? (
@@ -88,6 +154,8 @@ export function RequestDetails() {
             ) : (
               <TextArea
                 autoCompleteType="off"
+                value={closingSolution}
+                onChangeText={setClosingSolution}
                 flex={1}
                 placeholder="Descrição da solução"
               />
@@ -97,7 +165,7 @@ export function RequestDetails() {
       </ScrollView>
       {!isDone && (
         <Box w="full" bg="gray.800" p={4} pt={2} position="absolute" bottom="0">
-          <Button onPress={() => console.log('Complete this request')}>
+          <Button isLoading={isLoading} onPress={handleSubmit}>
             <Text fontWeight="bold">Finalizar</Text>
           </Button>
         </Box>
